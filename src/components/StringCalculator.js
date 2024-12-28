@@ -9,5 +9,10 @@ export function add(numbers){
         numbers = parts.slice(1).join("\n"); 
     }
     const num=numbers.split(delimiter).map(Number)
+    const negatives = num.filter(num => num < 0);
+
+    if (negatives.length > 0) {
+        throw new Error(`Negative numbers not allowed: ${negatives.join(", ")}`);
+    }
     return num.reduce((sum,current)=>sum+current,0)
 }
